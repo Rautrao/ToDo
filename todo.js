@@ -4,9 +4,32 @@ const addTask=()=>{
     const taskValue = taskInput.value.trim() ;
     if(taskValue){
         tasks.push({taskValue: taskValue,completed:false});
+        taskInput.value="";
         updateTaskList(); // updates task list inside the user interface
     }
 };
+
+const deleteTask = (index)=>{
+    tasks.splice(index,1);
+    updateTaskList();
+};
+
+const editTask=(index)=>{
+    const taskInput = document.getElementById('taskInput')
+    taskInput.value= tasks[index].taskValue;
+    deleteTask(index);
+
+}
+
+const toggleTaskComplete=(index)=>{
+    tasks[index].completed = !tasks[index].completed;
+    updateTaskList();
+};
+
+const updateStats = ()=>{
+    const completedTasks = tasks.filter()
+};
+
 const updateTaskList = ()=>{
     const taskList= document.getElementById('task-list');
     taskList.innerHTML = '';
@@ -21,14 +44,13 @@ const updateTaskList = ()=>{
             </div>
             <div class="icons">
                 <img src="./img/edit.png" onclick="editTask(${index})">
-                <img src="./img/bin.png" onclick="delete(${index})">
+                <img src="./img/bin.png" onclick="deleteTask(${index})">
             </div>
         </div>
         `;
         listItem.addEventListener('change',()=>{toggleTaskComplete(index)});
         taskList.append(listItem);
     })
-
 };
 
 document.getElementById('addTask').addEventListener('click',(event)=>{
