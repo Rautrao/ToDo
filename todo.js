@@ -81,7 +81,7 @@ const updateTaskList = ()=>{
                 
             </div>
             <div class="icons">
-                <button class="pinToTop">📌</button>
+                <button class="pin-to-top js-pin-to-top-${index}" onClick="pinToTop(${index})">📌</button>
                 <img src="./img/edit.png" onclick="editTask(${index})">
                 <img src="./img/bin.png" onclick="deleteTask(${index})">
                 
@@ -91,6 +91,30 @@ const updateTaskList = ()=>{
         listItem.addEventListener('change',()=>{toggleTaskComplete(index)});
         taskList.append(listItem);
     })
+};
+
+const pinToTop = (index) => {
+    // Swap task at index` with the first task
+  if (index !== 0) {
+      const temp = tasks[0];
+      tasks[0] = tasks[index];
+      tasks[index] = temp;
+  }
+  updateTaskList();
+  saveTasks();
+};
+
+
+const sortByDatefn = ()=>{
+ 
+  tasks.sort((a, b) => {
+    const dateA = new Date(a.dateValue);
+    const dateB = new Date(b.dateValue);
+    return dateA - dateB; // ascending order
+});
+
+  updateTaskList(); // refreshes task list UI
+  saveTasks();      // updates local storage
 };
 
 document.getElementById('addTask').addEventListener('click',(event)=>{
