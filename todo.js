@@ -7,27 +7,35 @@ const addTask=()=>{
         taskInput.value="";
         updateTaskList(); // updates task list inside the user interface
     }
+    updateStats();
 };
 
 const deleteTask = (index)=>{
     tasks.splice(index,1);
     updateTaskList();
+    updateStats();
 };
 
 const editTask=(index)=>{
     const taskInput = document.getElementById('taskInput')
     taskInput.value= tasks[index].taskValue;
     deleteTask(index);
-
+    updateStats();
 }
 
 const toggleTaskComplete=(index)=>{
     tasks[index].completed = !tasks[index].completed;
     updateTaskList();
+    updateStats();
 };
 
 const updateStats = ()=>{
-    const completedTasks = tasks.filter()
+    const completedTasks = tasks.filter(task=>task.completed).length;
+    const totalTasks  = tasks.length;
+    const  progress = (completedTasks/totalTasks) *100;
+    const progressBar = document.getElementById('progress');
+    progressBar.style.width = `${progress}%`;
+    document.getElementById('numbers').innerText = `${completedTasks} / ${totalTasks}`;
 };
 
 const updateTaskList = ()=>{
