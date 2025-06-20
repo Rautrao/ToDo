@@ -18,8 +18,10 @@ const saveTasks=()=>{
 const addTask=()=>{
     const taskInput = document.getElementById('taskInput');
     const taskValue = taskInput.value.trim() ;
+    const dateInput = document.getElementById('dateInput');
+    const dateValue = dateInput.value;
     if(taskValue){
-        tasks.push({taskValue: taskValue,completed:false});
+        tasks.push({taskValue: taskValue,completed:false,dateValue:dateValue});
         taskInput.value="";
         updateTaskList(); // updates task list inside the user interface
     }
@@ -75,10 +77,14 @@ const updateTaskList = ()=>{
             <div class="task  ${task.completed ? 'completed': ''}">
                 <input type="checkbox" class= "checkbox" ${task.completed?'checked':''}>
                 <p>${task.taskValue}</p>
+                <p>${task.dateValue}</p>
+                
             </div>
             <div class="icons">
+                <button class="pinToTop">📌</button>
                 <img src="./img/edit.png" onclick="editTask(${index})">
                 <img src="./img/bin.png" onclick="deleteTask(${index})">
+                
             </div>
         </div>
         `;
