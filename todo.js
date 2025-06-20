@@ -47,6 +47,8 @@ const toggleTaskComplete=(index)=>{
     updateTaskList();
     updateStats();
     saveTasks();
+    
+    
 };
 
 const updateStats = ()=>{
@@ -56,6 +58,10 @@ const updateStats = ()=>{
     const progressBar = document.getElementById('progress');
     progressBar.style.width = `${progress}%`;
     document.getElementById('numbers').innerText = `${completedTasks} / ${totalTasks}`;
+
+    if(tasks.length && completedTasks === totalTasks){
+        blastConfetti();
+    }
 };
 
 const updateTaskList = ()=>{
@@ -85,3 +91,98 @@ document.getElementById('addTask').addEventListener('click',(event)=>{
     event.preventDefault()  //prevents default behaviour when clicked
     addTask();
 });
+const blastConfetti=()=>{
+    confetti({
+  spread: 360,
+  ticks: 200,
+  gravity: 1,
+  decay: 0.94,
+  startVelocity: 30,
+  particleCount: 100,
+  scalar: 3,
+  shapes: ["image"],
+  shapeOptions: {
+    image: [{
+        src: "https://particles.js.org/images/fruits/apple.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/avocado.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/banana.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/berries.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/cherry.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/grapes.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/lemon.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/orange.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/peach.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/pear.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/pepper.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/plum.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/star.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/strawberry.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/watermelon.png",
+        width: 32,
+        height: 32,
+      },
+      {
+        src: "https://particles.js.org/images/fruits/watermelon_slice.png",
+        width: 32,
+        height: 32,
+      },
+    ],
+  },
+});
+}
