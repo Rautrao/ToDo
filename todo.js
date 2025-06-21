@@ -74,17 +74,19 @@ const updateTaskList = ()=>{
         const listItem = document.createElement('li');
         listItem.innerHTML=`
         <div class="taskItem">
+        
             <div class="task  ${task.completed ? 'completed': ''}">
                 <input type="checkbox" class= "checkbox" ${task.completed?'checked':''}>
                 <p>${task.taskValue}</p>
                 <p>${new Date(task.dateValue).toLocaleDateString()}</p>
-                
             </div>
+
             <div class="icons">
                 <button class="pin-to-top js-pin-to-top-${index}" onClick="pinToTop(${index})">${task.isPinned?'📍':'📌'}</button>
                 <img src="./img/edit.png" onclick="editTask(${index})">
                 <img src="./img/bin.png" onclick="deleteTask(${index})">
             </div>
+
         </div>
         `;
         listItem.addEventListener('change',()=>{toggleTaskComplete(index)});

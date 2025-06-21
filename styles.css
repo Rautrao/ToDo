@@ -22,7 +22,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:120px auto 0 auto;
+    margin:100px auto 0 auto;
     max-width:500px;
     background-color: white;
     border-radius: 20px;
@@ -239,4 +239,26 @@ form{
     border-width: 0px;
     cursor: pointer;
 
+}
+@media(max-width:600px){
+    .container{
+        margin: 20px;
+    }
+    .details{
+        font-size:15px;
+        text-align: center;
+    }
+    .details p{
+        margin: 10px;
+    }
+    .task{
+        grid-template-columns: 20px 80px 0px;
+    }
+    form{
+        display : grid;
+        grid-template-columns: 50% 15% 15% 15% ;
+    }
+    
+   
+    
 }
