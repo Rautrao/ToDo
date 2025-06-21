@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container"><!-- Outer Container-->
 
-        <div class="stats-container">
+        <div class="stats-container"><!--Container to display stats-->
             <div class="details">
                 <h1>ToDo List</h1>
                 <p>Getting 1% better everyday!</p>
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <form action="">
+        <form action=""><!--form element for input form user-->
             <input type="text" id="taskInput" placeholder="Input your task...">
             
             <input type="date" id="dateInput">
@@ -30,7 +30,7 @@
             <button type="button" id="sortByDate" onclick="sortByDatefn();">⇅</button>
             
         </form>
-        <ul id="task-list"></ul>
+        <ul id="task-list"></ul><!--unordered list element-->
     </div>
 
     <script src="todo.js"></script>

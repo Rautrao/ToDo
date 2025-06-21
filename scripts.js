@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 });
 let tasks=[];
-const saveToLocalStorage=()=>{
+const saveToLocalStorage=()=>{ // function to save data to local storage
     localStorage.setItem('tasks',JSON.stringify(tasks));
 }
 
-const addTask=()=>{
+const addTask=()=>{//function to add the task
     const taskInput = document.getElementById('taskInput');
     const taskValue = taskInput.value.trim() ;
     const dateInput = document.getElementById('dateInput');
@@ -32,14 +32,14 @@ const addTask=()=>{
     dateInput.value = '';
 };
 
-const deleteTask = (index)=>{
+const deleteTask = (index)=>{//function to delete task
     tasks.splice(index,1);
     updateTaskList();
     updateStats();
     saveToLocalStorage();
 };
 
-const editTask=(index)=>{
+const editTask=(index)=>{//function to edit task
     const taskInput = document.getElementById('taskInput')
     taskInput.value= tasks[index].taskValue;
     deleteTask(index);
@@ -47,13 +47,13 @@ const editTask=(index)=>{
     saveToLocalStorage();
 }
 
-const toggleTaskComplete=(index)=>{
+const toggleTaskComplete=(index)=>{//function to toggle task complete/  incomplete
     tasks[index].completed = !tasks[index].completed;
     updateTaskList();
     updateStats();
     saveToLocalStorage();
 };
-const updateStats = ()=>{
+const updateStats = ()=>{//function to update stats in stats-container
     const completedTasks = tasks.filter(task=>task.completed).length;
     const totalTasks  = tasks.length;
     const  progress = (completedTasks/totalTasks) *100;
@@ -62,19 +62,19 @@ const updateStats = ()=>{
     document.getElementById('numbers').innerText = `${completedTasks} / ${totalTasks}`;
 
     if(tasks.length && completedTasks === totalTasks){
-        blastConfetti();
+        taskCompletionblast();
     }
 };
 
-const updateTaskList = ()=>{
+const updateTaskList = ()=>{ //function to update task list
     const taskList= document.getElementById('task-list');
     taskList.innerHTML = '';
 
-    tasks.forEach((task,index)=>{
+    tasks.forEach((task,index)=>{ // creating an element in list
         const listItem = document.createElement('li');
         listItem.innerHTML=`
         <div class="taskItem">
-        
+
             <div class="task  ${task.completed ? 'completed': ''}">
                 <input type="checkbox" class= "checkbox" ${task.completed?'checked':''}>
                 <p>${task.taskValue}</p>
@@ -94,14 +94,14 @@ const updateTaskList = ()=>{
     })
 };
 
-const pinToTop = (index) => {
+const pinToTop = (index) => { // function to pin to top
   tasks[index].isPinned = !tasks[index].isPinned;
   const pinnedTask = tasks.splice(index, 1)[0]; //Get the task at 'index'
   tasks.unshift(pinnedTask); //inserts it to the beginning of the tasks
   updateTaskList();
   saveToLocalStorage();
 };
-const sortByDatefn = ()=>{
+const sortByDatefn = ()=>{ // function to sort task list by date
   tasks.forEach((task)=>{task.isPinned=false});
   tasks.sort((a, b) => {
     const dateA = new Date(a.dateValue);
@@ -117,7 +117,7 @@ document.getElementById('addTask').addEventListener('click',(event)=>{
     event.preventDefault()  //prevents default behaviour when clicked
     addTask();
 });
-const blastConfetti=()=>{
+const taskCompletionblast=()=>{
     confetti({
   spread: 360,
   ticks: 200,
