@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
 });
-
 let tasks=[];
-
-const saveTasks=()=>{
+const saveToLocalStorage=()=>{
     localStorage.setItem('tasks',JSON.stringify(tasks));
 }
 
@@ -20,20 +18,25 @@ const addTask=()=>{
     const taskValue = taskInput.value.trim() ;
     const dateInput = document.getElementById('dateInput');
     const dateValue = dateInput.value;
+    if(!dateValue){
+      alert('Please choose a date');
+      return;
+    }
     if(taskValue){
-        tasks.push({taskValue: taskValue,completed:false,dateValue:dateValue});
+        tasks.push({taskValue: taskValue,completed:false,dateValue:dateValue,isPinned:false});
         taskInput.value="";
         updateTaskList(); // updates task list inside the user interface
     }
     updateStats();
-    saveTasks();
+    saveToLocalStorage();
+    dateInput.value = '';
 };
 
 const deleteTask = (index)=>{
     tasks.splice(index,1);
     updateTaskList();
     updateStats();
-    saveTasks();
+    saveToLocalStorage();
 };
 
 const editTask=(index)=>{
@@ -41,18 +44,15 @@ const editTask=(index)=>{
     taskInput.value= tasks[index].taskValue;
     deleteTask(index);
     updateStats();
-    saveTasks();
+    saveToLocalStorage();
 }
 
 const toggleTaskComplete=(index)=>{
     tasks[index].completed = !tasks[index].completed;
     updateTaskList();
     updateStats();
-    saveTasks();
-    
-    
+    saveToLocalStorage();
 };
-
 const updateStats = ()=>{
     const completedTasks = tasks.filter(task=>task.completed).length;
     const totalTasks  = tasks.length;
@@ -77,14 +77,13 @@ const updateTaskList = ()=>{
             <div class="task  ${task.completed ? 'completed': ''}">
                 <input type="checkbox" class= "checkbox" ${task.completed?'checked':''}>
                 <p>${task.taskValue}</p>
-                <p>${task.dateValue}</p>
+                <p>${new Date(task.dateValue).toLocaleDateString()}</p>
                 
             </div>
             <div class="icons">
-                <button class="pin-to-top js-pin-to-top-${index}" onClick="pinToTop(${index})">📌</button>
+                <button class="pin-to-top js-pin-to-top-${index}" onClick="pinToTop(${index})">${task.isPinned?'📍':'📌'}</button>
                 <img src="./img/edit.png" onclick="editTask(${index})">
                 <img src="./img/bin.png" onclick="deleteTask(${index})">
-                
             </div>
         </div>
         `;
@@ -94,27 +93,22 @@ const updateTaskList = ()=>{
 };
 
 const pinToTop = (index) => {
-    // Swap task at index` with the first task
-  if (index !== 0) {
-      const temp = tasks[0];
-      tasks[0] = tasks[index];
-      tasks[index] = temp;
-  }
+  tasks[index].isPinned = !tasks[index].isPinned;
+  const pinnedTask = tasks.splice(index, 1)[0]; //Get the task at 'index'
+  tasks.unshift(pinnedTask); //inserts it to the beginning of the tasks
   updateTaskList();
-  saveTasks();
+  saveToLocalStorage();
 };
-
-
 const sortByDatefn = ()=>{
- 
+  tasks.forEach((task)=>{task.isPinned=false});
   tasks.sort((a, b) => {
     const dateA = new Date(a.dateValue);
     const dateB = new Date(b.dateValue);
-    return dateA - dateB; // ascending order
+    return dateA - dateB; // in ascending order
 });
 
   updateTaskList(); // refreshes task list UI
-  saveTasks();      // updates local storage
+  saveToLocalStorage();      // updates local storage
 };
 
 document.getElementById('addTask').addEventListener('click',(event)=>{
