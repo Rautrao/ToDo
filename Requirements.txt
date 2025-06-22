@@ -1,0 +1,5 @@
+## Requirements :
+
+-- Use Desktop to make website more portable
+-- Modern browser (Chrome, Firefox, etc.)
+-- Internet (for confetti images)

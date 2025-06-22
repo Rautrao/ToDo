@@ -1,10 +1,9 @@
-*{
+*{/*Applying properties to all elements*/
     margin:0px;
     padding:0px;
-    box-sizing:border-box;
-    
+    box-sizing:border-box;   
 }
-:root{
+:root{ /* Global variables */
     --background:#000430;
     --secondaryBackground:#171c48;
     --text: #fff;
@@ -241,7 +240,7 @@ form{
 
 }
 
-@media(max-width:500px){
+@media(max-width:500px){/* Using media query for making UI portable on mobile */
     .container{
         margin: 15px;
         padding:13px;

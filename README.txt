@@ -4,28 +4,26 @@
 -- Also features like edit, Sort by date , Pin to top,completed and not- not completed
 -- It has a progress bar at the top of the page which gets updated when we finish a task 
 
-## Requirements :
-
--- Modern browser (Chrome, Firefox, etc.)
--- Internet (for confetti images)
-
 ## How to Run
 
 --Open `index.html` in a browser
+--step 1 :First sign up to the page
+--step 2 :Log in to the page and then ToDo app will be available to use
 
 ## Detailed explanation 
 
 -- Technologies used: 
-        - HTML5
-        - CSS3 (Flexbox, Grid, Media Queries)
-        - Vanilla JavaScript 
-        - localStorage API
-        - Confetti library
+    - HTML5
+    - CSS3 (Flexbox, Grid, Media Queries)
+    - Vanilla JavaScript 
+    - localStorage API
+    - Confetti library
 
 --How it works :
-    - tasks are added via input of type text in form section 
+    - Log in at the interface 
+    - tasks are added via input of type text in the form section 
     - After typing text we should add date 
-    - and then press addTask button 
+    - and then press Add Task button
     - Added task will be displayed in the task list with 3 options 
     - delete ,edit and pin to top
 
