@@ -6,9 +6,10 @@
 
 ## How to Run
 
---Open `index.html` in a browser
---step 1 :First sign up to the page
---step 2 :Log in to the page and then ToDo app will be available to use
+-- Open `index.html` in a browser
+-- step 1 :First sign up to the page
+-- step 2 :Log in to the page 
+-- step 3 :ToDo app will be available to use
 
 ## Detailed explanation 
 
@@ -19,15 +20,23 @@
     - localStorage API
     - Confetti library
 
---How it works :
-    - Log in at the interface 
+-- How it works :
+    - Sign up to the page using email-id and password
+    - Log in 
+    - you will be redirected to Todo App interface
     - tasks are added via input of type text in the form section 
     - After typing text we should add date 
     - and then press Add Task button
     - Added task will be displayed in the task list with 3 options 
     - delete ,edit and pin to top
+    - delete symbol will be used to delete the task
+    - edit symbol will be used to edit the task
+    - and pin symbol will be used to pin to top 
+    - also at the there is an option to sort by date
+    - we can also check box if the task is completed
+    - There is a progress bar which tracks the completion of our tasks
 
---Mobile compatabality
+-- Mobile compatabality
     -The app uses media queries to ensure it works smoothly on phones (≤600px), including stacked input fields and larger tap targets.
 
     
