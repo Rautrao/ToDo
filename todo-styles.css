@@ -100,39 +100,38 @@ form{
 #taskInput::placeholder{
     color:rgb(21, 21, 21);
 }
-#dateInput {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    opacity: 0;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.calendar-emoji {
+#dateInput{
+    position:relative;
+    color:transparent;
     display: flex;
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+    width:50px;
+    height: 50px;
+    cursor:pointer;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: white;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-    font-size: 1.5em;
-    position: relative;
-    z-index: 1;
-    cursor: pointer;
-    user-select: none;
 }
-
-/* Remove flex and align-items/justify-content for better mobile compatibility */
-
-/* Remove or relax custom indicator styles for mobile compatibility */
-#dateInput::-webkit-calendar-picker-indicator {
-    /* Only minimal styling to avoid breaking mobile calendar */
-    cursor: pointer;
+#dateInput::-webkit-calendar-picker-indicator{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+    width:50%;
+    height:50%;
+    cursor:pointer;
+    border:none;
+    color:black;
+    
+}
+#dateInput::-webkit-datetime-edit,
+#dateInput::-webkit-inner-spin-button,
+#dateInput::-webkit-clear-button{
+    display: none;padding:16px;
 }
 #addTask{
     padding :16px;
