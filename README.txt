@@ -39,4 +39,10 @@
 -- Mobile compatabality
     -The app uses media queries to ensure it works smoothly on phones (≤600px), including stacked input fields and larger tap targets.
 
-    
+-- File name :explanation
+    - index.html contains code for user authencation interface.
+    - script.js contains javaScript code required for user authencation page.
+    - style.css contains css code for user authencation ui.
+    - todo.html contains html code required for todo app interface
+    - todo-script.js contains javaScript code required for todo app scripting
+    - todo-styles.css contains code for styling todo app
